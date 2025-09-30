@@ -15,6 +15,7 @@
   <ul>
     <li><a href="#sobre-mi">Sobre mí</a></li>
     <li><a href="#habilidades">Habilidades</a></li>
+    <li><a href="#proyectos-universitarios">Proyectos</a></li>
     <li><a href="#certificaciones">Certificaciones</a></li>
     <li><a href="#educacion">Educación</a></li>
     <li><a href="#herramientas">Herramientas</a></li>
@@ -276,7 +277,167 @@ h2::after {
   left: 0;
   color: var(--primary);
 }
-|
+
+/* Estilo del Botón de Control - Mejorado */
+.toggle-details {
+    /* Propiedades ya existentes */
+    display: block;
+    width: 100%; 
+    padding: 12px 15px; /* Un poco más de padding vertical */
+    margin-top: 20px; /* Un poco más de separación superior */
+    background-color: var(--color-acento, #00aaff); 
+    color: #1a1a1a; 
+    border: none;
+    border-radius: 8px; /* Bordes más redondeados */
+    font-weight: bold;
+    cursor: pointer;
+    transition: background-color 0.3s ease, transform 0.2s ease, box-shadow 0.3s ease;
+    font-size: 1.05rem; /* Letra un poco más grande */
+    letter-spacing: 0.5px; /* Pequeño espaciado entre letras */
+    box-shadow: 0 4px 8px rgba(0, 170, 255, 0.2); /* Sombra sutil con color de acento */
+
+    /* Para el ícono al lado del texto */
+    display: flex; /* Para centrar texto e ícono */
+    align-items: center;
+    justify-content: center;
+}
+
+.toggle-details:hover {
+    background-color: #33bbff; /* Color un poco más claro al pasar el ratón */
+    transform: translateY(-2px); /* Ligero levantamiento */
+    box-shadow: 0 6px 12px rgba(0, 170, 255, 0.3); /* Sombra más pronunciada */
+}
+
+/* Efecto de "presionado" al hacer click */
+.toggle-details:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 5px rgba(0, 170, 255, 0.2);
+}
+/* Resaltar texto dentro de los detalles (Qué hice, Herramientas, Aprendizajes) */
+
+/* Palabras clave dentro de los li (ej. "Diagrama GANTT", "ISO 27001") */
+.project-details ul li strong, 
+.project-details ul li em { /* Si usas <em> para enfatizar */
+    color: var(--color-acento-claro, #33ccff); /* Un azul más claro o el mismo azul principal */
+    font-weight: bold;
+}
+
+/* Títulos de los apartados internos (Qué hice, Herramientas clave, Aprendizajes clave) */
+.project-details h4 {
+    font-size: 1.25rem; /* Un poco más grande */
+    color: var(--color-acento, #00aaff); /* Color de acento principal */
+    margin-top: 1.8rem; /* Más espacio antes del título */
+    margin-bottom: 0.8rem;
+    border-bottom: 2px solid rgba(0, 170, 255, 0.3); /* Una línea de acento más definida */
+    padding-bottom: 5px;
+}
+
+/* El "strong" de Aprendizajes clave */
+.project-details .aprendizajes strong {
+    color: #ffffff; /* Blanco puro para que resalte más el título del bloque */
+    font-size: 1.1rem; /* Un poco más grande */
+    letter-spacing: 0.5px;
+}
+
+/* Mejorar el diseño de la caja de aprendizajes */
+.project-details .aprendizajes {
+    background-color: var(--bg-secundario-oscuro, #212121); /* Un fondo aún más oscuro */
+    border: 1px solid rgba(0, 170, 255, 0.2); /* Borde suave con acento */
+    box-shadow: inset 0 0 10px rgba(0, 170, 255, 0.1); /* Sombra interna sutil */
+    padding: 15px 20px; /* Más padding */
+    border-radius: 8px;
+}
+
+/* Color del checkmark en las listas de detalles */
+.project-details ul li:before {
+    color: var(--color-acento-claro, #33ccff); /* Color de acento para el checkmark */
+    font-weight: bold;
+}
+/* --- CLASES DE OCULTAMIENTO Y EXPANSIÓN --- */
+
+/* Contenido oculto por defecto */
+.project-details.hidden {
+    display: none;
+    opacity: 0;
+    max-height: 0;
+    overflow: hidden;
+    transition: all 0.5s ease-in-out; /* Transición suave */
+}
+
+/* Contenido visible cuando se hace clic */
+.project-details.visible {
+    display: block; /* Vuelve a mostrar el bloque */
+    opacity: 1;
+    max-height: 1000px; /* Suficientemente grande para el contenido */
+    padding-top: 15px;
+    border-top: 1px solid rgba(255, 255, 255, 0.1);
+    margin-top: 15px;
+    transition: all 0.5s ease-in-out; 
+}
+
+/* Mantener el diseño del contenido expandido, usando el estilo de lista original */
+.project-details ul {
+    list-style: none; 
+    padding-left: 0;
+    margin-bottom: 1rem;
+}
+
+.project-details ul li {
+    position: relative;
+    padding-left: 1.5rem; 
+    line-height: 1.6;
+}
+
+.project-details ul li:before {
+    content: "✔️"; 
+    color: var(--color-acento, #00aaff);
+    font-size: 0.9em;
+    position: absolute;
+    left: 0;
+    top: 0;
+}
+/* =============================== */
+/* Estilos del Contenedor GRID */
+/* =============================== */
+.proyectos-grid {
+    /* Define la cuadrícula con 2 o 3 columnas que se ajustan */
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    
+    /* PENDIENTE: Aumentar el GAP para separar proyectos (¡SOLUCIÓN!) */
+    gap: 40px; /* Aumentado a 40px para mejor separación vertical y horizontal */
+    
+    text-align: left;
+}
+
+/* =============================== */
+/* Estilos de la Tarjeta Individual */
+/* =============================== */
+.proyecto-card {
+    background-color: var(--card-bg, #282828);
+    color: var(--text-color, #cccccc);
+    padding: 20px;
+    border-radius: 10px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.3);
+    border: 1px solid rgba(0, 170, 255, 0.1); 
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+  
+  position: relative;
+  display: block;
+  margin-bottom: 30px;   /* separa cada card de la siguiente sección */
+  overflow: auto;        /* asegura que el contenido largo expanda el div */
+
+
+    
+    /* Necesario para que el botón "Ver más" se alinee abajo */
+    display: flex;
+    flex-direction: column;
+}
+
+.proyecto-card:hover {
+    transform: translateY(-3px);
+    box-shadow: 0 8px 25px rgba(0, 170, 255, 0.15); 
+}
 /* Íconos en los títulos de habilidades */
 .skills-card h3 {
   display: flex;
@@ -701,8 +862,6 @@ h2::after {
   transform: translateY(-2px);
 }
 
-}
-<!-- Forzar deploy -->
 
 /* evita que el header quede tapado por la navbar fija */
 header { padding-top: 78px; }
@@ -795,11 +954,35 @@ header { padding-top: 78px; }
   transform: scale(1.05);
 }
 
+/* Botón CV */
+.btn-cv {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 0.8em 1.5em;
+  background: var(--primary);
+  color: #000;
+  font-weight: bold;
+  border-radius: 10px;
+  text-decoration: none;
+  transition: all 0.3s ease-in-out;
+}
+
+.btn-cv:hover {
+  background: #1e90ff;
+  color: #fff;
+  box-shadow: 0 0 15px rgba(30, 144, 255, 0.4);
+  transform: scale(1.05);
+}
+
+
+
+
 </style>
 
   <section id="sobre-mi">
     <h2>Sobre mí</h2>
-    <p>Estudiante avanzado de la Licenciatura en Ciberseguridad. Mi mayor impulso es aprender, experimentar y proteger. Me defino como alguien curioso, empático y comprometido con la mejora continua, suelo destacarme por mi actitud colaborativa y responsabilidad ética. Cuento con formación en aspectos como análisis de redes, políticas de seguridad y resolución de incidentes.
+    <p>Estudiante avanzado de la Licenciatura en Ciberseguridad(3er año). Mi mayor impulso es aprender, experimentar y proteger. Me defino como alguien curioso, empático y comprometido con la mejora continua, suelo destacarme por mi actitud colaborativa y responsabilidad ética. Cuento con formación en aspectos como análisis de redes, políticas de seguridad y resolución de incidentes.
 Mi verdadera pasión está en resolver problemas reales: detectar, mitigar, comunicar riesgos y aportar soluciones. Busco incorporarme a un equipo profesional donde mi capacidad de adaptación y mi enfoque humano puedan sumar valor y seguir desarrollándome como especialista en seguridad de la información.</p>
   </section>
 
@@ -835,6 +1018,206 @@ Mi verdadera pasión está en resolver problemas reales: detectar, mitigar, comu
     </div>
 
   </div>
+</section>
+<section id="proyectos-universitarios" class="section">
+    <h2>Proyectos Universitarios</h2>
+    
+    <div class="proyectos-grid">
+        
+        <div class="proyecto-card">
+            <h3>Diagrama GANTT — Lithiur Team.</h3>
+            <p class="rol">Rol: Planificador / Analista de Procesos</p>
+            
+            <p>Planifiqué y documenté un cronograma Diagrama GANTT para implementar mejoras en la infraestructura de red y actividades de ciberseguridad, enfocándome en la priorización de tareas críticas.</p>
+            
+            <button class="toggle-details">Ver Detalles ( + )</button> 
+
+            <div class="project-details hidden">
+                
+                <h4>Qué hice</h4>
+                <ul>
+                    <li>Identifiqué tareas críticas (conectividad, capacitación, refuerzo contra phishing y continuidad del negocio).</li>
+                    <li>Establecí fechas, dependencias y duración para cada actividad.</li>
+                    <li>Clasifiqué las acciones por plazos (corto, mediano, largo) para su correcta priorización.</li>
+                </ul>
+                
+                <h4>Herramientas clave</h4>
+                <ul class="tools-list">
+                    <li>Microsoft Excel (cronograma y GANTT)</li>
+                    <li>Google Sheets (colaboración)</li>
+                    <li>Draw.io / Bocetos (diagramas básicos)</li>
+                </ul>
+                
+                <div class="aprendizajes">
+                    <strong>Aprendizajes clave:</strong>
+                    <ul>
+                        <li>Aplicación práctica de planificación de proyectos en contextos de ciberseguridad.</li>
+                        <li>Visualización de dependencias y gestión de tiempos para mitigar riesgos.</li>
+                        <li>Comunicación de alcance y entregables a stakeholders (ficticios).</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+
+
+
+        <div class="proyecto-card">
+            <h3>Diagnóstico ISO 27001/27002 — Lithiur Team</h3>
+            <p class="rol">Rol: Analista de Seguridad / Auditor Junior</p>
+            
+            <p>Realicé un diagnóstico de cumplimiento respecto a las normas ISO/IEC 27001 y sus recomendaciones (<strong> 27002</strong>), proponiendo controles de mejora y un roadmap de implementación.</p>
+            
+            <button class="toggle-details">Ver Detalles ( + )</button> 
+
+            <div class="project-details hidden">
+                
+                <h4>Qué hice</h4>
+                <ul>
+                    <li>Construí y apliqué cuestionarios y entrevistas para medir el nivel de cumplimiento actual.</li>
+                    <li>Analicé métricas por capítulos (Políticas SI, Control de Accesos, Gestión de Activos, Seguridad de RRHH, etc.).</li>
+                    <li>Propuse un plan de tratamiento de riesgos con controles prioritarios y un roadmap temporal.</li>
+                </ul>
+                
+                <h4>Herramientas clave</h4>
+                <ul class="tools-list">
+                    <li>Microsoft Excel (consolidación de métricas, tablas y reportes)</li>
+                    <li>Plantillas de las normas ISO 27001 / 27002</li>
+                    <li>Entrevistas estructuradas y cuestionarios de auditoría</li>
+                </ul>
+                
+                <div class="aprendizajes">
+                    <strong>Aprendizajes clave:</strong>
+                    <ul>
+                        <li>Aplicación práctica de normas ISO 27001/27002 para la elaboración de un diagnóstico.</li>
+                        <li>Priorización de controles basados en el nivel de riesgo y la factibilidad.</li>
+                        <li>Elaboración de reportes técnicos y recomendaciones ejecutivas.</li>
+                    </ul>
+                </div>
+            </div>
+        </div>
+        <div class="proyecto-card">
+    
+          <h3>Gestión de Base de Datos Musical — Proyecto SQL</h3>
+    <p class="rol">Rol: Desarrollador de Base de Datos / Analista SQL</p>
+    
+    <p>Diseñé y ejecuté consultas SQL sobre un sistema musical ficticio para obtener información clave de usuarios, playlists, artistas, canciones y discográficas.</p>
+    
+    <button class="toggle-details">Ver Detalles ( + )</button> 
+
+    <div class="project-details hidden">
+        
+        <h4>Qué hice</h4>
+        <ul>
+            <li>Elaboré consultas SQL simples y avanzadas para responder consignas específicas.</li>
+            <li>Desarrollé reportes con funciones de agregación (<code>COUNT</code>, <code>AVG</code>, <code>MAX</code>, <code>MIN</code>).</li>
+            <li>Construí consultas complejas con múltiples <code>JOINs</code> entre hasta 6–7 tablas.</li>
+            <li>Generé listados y métricas como: top canciones, usuarios sin playlist, discográficas por país y playlists no activas.</li>
+        </ul>
+        
+        <h4>Herramientas clave</h4>
+        <ul class="tools-list">
+            <li>SQL (MySQL)</li>
+            <li>XAMPP / phpMyAdmin</li>
+            <li>Documentación en PDF y scripts SQL</li>
+        </ul>
+        
+        <div class="aprendizajes">
+            <strong>Aprendizajes clave:</strong>
+            <ul>
+                <li>Diferenciar consultas simples de consultas complejas con múltiples relaciones.</li>
+                <li>Transformar datos crudos en reportes útiles y organizados.</li>
+                <li>Comprender la importancia de la normalización y relaciones en bases de datos.</li>
+                <li>Aplicar funciones de agregación para generar reportes más completos.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+<div class="proyecto-card">
+    <h3>Criptografía Aplicada y Seguridad de la Información</h3>
+    <p class="rol">Rol: Implementador y Analista de Seguridad</p>
+    
+    <p>Trabajé con <strong>hashes, certificados digitales, firmas y análisis de tráfico TLS</strong> para garantizar la integridad, autenticidad y confidencialidad de la información en un entorno académico.</p>
+    
+    <button class="toggle-details">Ver Detalles ( + )</button> 
+
+    <div class="project-details hidden">
+        
+        <h4>Qué hice</h4>
+        <ul>
+            <li>Generé y verifiqué <strong>hashes SHA-256</strong> para comprobar la integridad de archivos.</li>
+            <li>Trabajé con <strong>certificados digitales (.crt, .cer)</strong> y una autoridad certificadora para validar identidades y confianza.</li>
+            <li>Utilicé <strong>claves públicas y firmas digitales</strong> para garantizar la autenticidad de documentos.</li>
+            <li>Analicé tráfico de red con <strong>Wireshark</strong>, interpretando handshakes TLS y el flujo de datos cifrados.</li>
+            <li>Documenté resultados con evidencias y capturas en un informe académico.</li>
+        </ul>
+        
+        <h4>Herramientas clave</h4>
+        <ul class="tools-list">
+            <li>PowerShell (generación de hashes)</li>
+            <li>Wireshark (captura y análisis de tráfico TLS)</li>
+            <li>GPG/PGP (manejo de claves y firmas digitales)</li>
+            <li>Certificados digitales (X.509, CA)</li>
+            <li>Microsoft Word (redacción del informe)</li>
+        </ul>
+        
+        <div class="aprendizajes">
+            <strong>Aprendizajes clave:</strong>
+            <ul>
+                <li>Aplicación de <strong>hashing (SHA-256)</strong> para verificar integridad de datos.</li>
+                <li>Comprensión de la <strong>infraestructura de clave pública (PKI)</strong> y validación de certificados.</li>
+                <li>Manejo de <strong>firmas digitales</strong> y su rol en la autenticación de información.</li>
+                <li>Funcionamiento del protocolo <strong>TLS</strong> y análisis de seguridad en el tráfico de red.</li>
+                <li>Integración práctica de herramientas de criptografía y análisis en un contexto real.</li>
+            </ul>
+        </div>
+    </div>
+</div>
+
+ <!-- Proyecto: Análisis Forense Completo (Caso "Habib") -->
+    <div class="proyecto-card">
+      <h3>Análisis Forense Completo — Caso "Habib"</h3>
+      <p class="rol">Rol: Técnico Forense / Analista de Evidencia Digital</p>
+
+      <p>Trabajo práctico basado en un caso simulado ("Habib") que implicó allanamiento y búsqueda de evidencia. El foco fue la adquisición, preservación y análisis de memoria y almacenamiento digital, manteniendo la cadena de custodia y las consideraciones legales/éticas.</p>
+
+      <button class="toggle-details">Ver Detalles ( + )</button>
+
+      <div class="project-details hidden">
+        <h4>Qué hice</h4>
+        <ul>
+          <li>Adquisición de memoria RAM y almacenamiento (imágenes forenses segmentadas) y registro de tiempos de captura.</li>
+          <li>Verifiqué integridad con hashes (MD5 / SHA1) y documenté la estructura de evidencia.</li>
+          <li>Analicé la memoria con Volatility para identificar procesos, conexiones y artefactos en memoria.</li>
+          <li>Procesé y revisé la evidencia de almacenamiento con Autopsy (archivos, metadatos, timeline).</li>
+          <li>Detecté limitaciones prácticas (ej. no poder guardar imagen en el mismo disco) y propuse soluciones operativas.</li>
+          <li>Manejé el aspecto legal/ético: preservación de privacidad, no difusión de material sensible y coordinación con autoridades (según el ejercicio).</li>
+        </ul>
+
+        <h4>Herramientas clave</h4>
+        <ul class="tools-list">
+          <li><strong>FTK Imager</strong> — adquisición de memoria y creación de imágenes forenses (.ad1 / .E01).</li>
+          <li><strong>Volatility</strong> — análisis de memoria RAM (procesos, conexiones, artefactos).</li>
+          <li><strong>Autopsy</strong> — análisis de disco y organización de la investigación (timeline, búsqueda de artefactos).</li>
+          <li><strong>VeraCrypt</strong> — manejo de volúmenes cifrados (montaje o simulación en el laboratorio para entender cómo tratar evidencia cifrada).</li>
+          <li>Herramientas de hashing (MD5 / SHA1), Word para documentación y bases de datos de caso (Autopsy DB).</li>
+        </ul>
+
+        <div class="aprendizajes">
+          <strong>Aprendizajes clave:</strong>
+          <ul>
+            <li>Procedimientos adecuados para la adquisición de memoria volátil y almacenamiento sin comprometer la evidencia.</li>
+            <li>Uso práctico de Volatility y Autopsy para extraer artefactos relevantes.</li>
+            <li>Importancia de los hashes y la documentación para mantener la cadena de custodia.</li>
+            <li>Cómo abordar evidencias cifradas: VeraCrypt como ejemplo de volúmenes cifrados que requieren pasos adicionales (montaje, credenciales, cooperación legal).</li>
+            <li>Consciencia legal y ética en la gestión y presentación de hallazgos en contextos académicos o judiciales.</li>
+          </ul>
+        </div>
+      </div>
+    </div>
+
+
+    </div>
 </section>
 
 <section id="certificaciones">
@@ -872,8 +1255,9 @@ Mi verdadera pasión está en resolver problemas reales: detectar, mitigar, comu
     <div class="icono-educacion">🎓</div>
     <div class="contenido-educacion">
       <h3>Licenciatura en Ciberseguridad</h3>
+      <h4>Buenos Aires, San Isidro</h4>
       <p class="institucion">Universidad Nacional Scalabrini Ortiz</p>
-      <p class="anio">2023 - 2026(estimado)</p>
+      <p class="anio">2023 - 2026 (estimado)</p>
     </div>
   </div>
 
@@ -881,7 +1265,8 @@ Mi verdadera pasión está en resolver problemas reales: detectar, mitigar, comu
     <div class="icono-educacion">📘</div>
     <div class="contenido-educacion">
       <h3>Bachiller en Economía y Administración</h3>
-      <p class="institucion">Unidad Académica Dr. Julio César Lovecchio. Escuela de Educación Secundaria n° 4 Coronel Suárez</p>
+      <h4>Buenos Aires, Coronel Suarez</h4>
+      <p class="institucion">Unidad Académica Dr. Julio César Lovecchio. Escuela de Educación Secundaria n° 4</p>
       <p class="anio">2017 - 2022</p>
     </div>
   </div>
@@ -905,7 +1290,7 @@ Mi verdadera pasión está en resolver problemas reales: detectar, mitigar, comu
         <span>Nmap</span>
       </div>
 
-      <div class="tool" role="listitem" title="Distribución para pentesting">
+      <div class="tool" role="listitem" title="Analaisis Forense">
         <img src="img/icons/autopsy.png" alt="Autopsy logo">
         <span>Autopsy</span>
       </div>
@@ -915,7 +1300,7 @@ Mi verdadera pasión está en resolver problemas reales: detectar, mitigar, comu
         <span>Cisco Packet Tracer</span>
       </div>
 
-      <div class="tool" role="listitem" title="Simulación y diseño de redes (Cisco Packet Tracer)">
+      <div class="tool" role="listitem" title="criptografía">
         <img src="img/icons/Kleopatra.svg.png" alt="Kleopatra logo">
         <span>Kleopatra</span>
       </div>
@@ -953,7 +1338,7 @@ Mi verdadera pasión está en resolver problemas reales: detectar, mitigar, comu
         <span>VirtualBox</span>
       </div>
 
-      <div class="tool" role="listitem" title="Virtualización empresarial">
+      <div class="tool" role="listitem" title="Organización">
         <img src="img/icons/notion.png" alt="Notion logo">
         <span>Notion</span>
       </div>
@@ -1002,7 +1387,7 @@ Mi verdadera pasión está en resolver problemas reales: detectar, mitigar, comu
     </div>
 
   <div class="exp-card">
-    <h3>Cablevisión Flow</h3>
+    <h3>Cablevision flow</h3>
     <p>Coronel Suárez, Bs. As. | Nov 2021 - Dic 2022</p>
     <ul>
       <li>Responsable de la distribución de correspondencia y material publicitario a domicilio.</li>
@@ -1028,7 +1413,7 @@ Mi verdadera pasión está en resolver problemas reales: detectar, mitigar, comu
     
     <div class="texto-aparicion">
       <p>
-        Durante mi paso por la Tecnicatura, fui invitado a participar en dos publicaciones de la universidad: una de manera espontánea como estudiante en plena jornada académica, y otra como parte de una campaña visual para la remera oficial de la carrera. 
+        Durante mi paso por la Licenciatura, fui invitado a participar en dos publicaciones de la universidad: una de manera espontánea como estudiante en plena jornada académica, y otra como parte de una campaña visual para la remera oficial de la carrera. 
     </div>
     
     <div class="imagen-box">
@@ -1068,14 +1453,37 @@ Mi verdadera pasión está en resolver problemas reales: detectar, mitigar, comu
     </div>
   </div>
 
-  <!-- Botones -->
+  <!-- Botones  -->
   <div class="contact-buttons">
     <a href="https://mail.google.com/mail/?view=cm&fs=1&to=correalejo10@gmail.com" target="_blank" class="btn">Enviar Email</a>
+    <a href="ruta/a/tu-archivo.pdf" download="CV-Alejo-Correa.pdf" type="application/pdf" class="btn">Descargar CV</a>
 
   </div>
 </section>
 
+<script>
+    document.addEventListener('DOMContentLoaded', () => {
+        const buttons = document.querySelectorAll('.toggle-details');
 
+        buttons.forEach(button => {
+            button.addEventListener('click', () => {
+                // Selecciona el div de detalles que está inmediatamente después del botón
+                const details = button.nextElementSibling;
+
+                // Alternar las clases CSS
+                details.classList.toggle('hidden');
+                details.classList.toggle('visible');
+
+                // Cambiar el texto del botón
+                if (details.classList.contains('visible')) {
+                    button.textContent = 'Ocultar Detalles ( - )';
+                } else {
+                    button.textContent = 'Ver Detalles ( + )';
+                }
+            });
+        });
+    });
+</script>
 
 </body>
 
